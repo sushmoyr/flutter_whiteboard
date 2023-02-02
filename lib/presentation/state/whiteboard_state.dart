@@ -5,7 +5,7 @@ import 'package:flutter_whiteboard/data/models/attributes/attributes.dart';
 import 'package:flutter_whiteboard/domain/entities/sketch_factory.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'draw_board_state.freezed.dart';
+part 'whiteboard_state.freezed.dart';
 
 /// The state of the draw board
 /// Built in states are
@@ -14,8 +14,8 @@ part 'draw_board_state.freezed.dart';
 /// - Moving: Move, scale the draw board
 /// - Typing (Not implemented yet)
 @freezed
-class DrawBoardState with _$DrawBoardState {
-  const factory DrawBoardState.drawing({
+class WhiteboardState with _$WhiteboardState {
+  const factory WhiteboardState.drawing({
     @Default(Board.empty()) Board board,
     @Default(Offset.zero) Offset translation,
     @Default(1.0) double scale,
@@ -25,7 +25,7 @@ class DrawBoardState with _$DrawBoardState {
     @Default(SketchFactory.initial()) SketchFactory sketchFactory,
   }) = Drawing;
 
-  const factory DrawBoardState.moving({
+  const factory WhiteboardState.moving({
     @Default(Board.empty()) Board board,
     @Default(Offset.zero) Offset translation,
     @Default(1.0) double scale,

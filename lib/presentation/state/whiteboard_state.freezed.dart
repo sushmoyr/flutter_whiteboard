@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'draw_board_state.dart';
+part of 'whiteboard_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DrawBoardState {
+mixin _$WhiteboardState {
   Board get board => throw _privateConstructorUsedError;
   Offset get translation => throw _privateConstructorUsedError;
   double get scale => throw _privateConstructorUsedError;
@@ -111,15 +111,15 @@ mixin _$DrawBoardState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DrawBoardStateCopyWith<DrawBoardState> get copyWith =>
+  $WhiteboardStateCopyWith<WhiteboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DrawBoardStateCopyWith<$Res> {
-  factory $DrawBoardStateCopyWith(
-          DrawBoardState value, $Res Function(DrawBoardState) then) =
-      _$DrawBoardStateCopyWithImpl<$Res, DrawBoardState>;
+abstract class $WhiteboardStateCopyWith<$Res> {
+  factory $WhiteboardStateCopyWith(
+          WhiteboardState value, $Res Function(WhiteboardState) then) =
+      _$WhiteboardStateCopyWithImpl<$Res, WhiteboardState>;
   @useResult
   $Res call(
       {Board board,
@@ -137,9 +137,9 @@ abstract class $DrawBoardStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DrawBoardStateCopyWithImpl<$Res, $Val extends DrawBoardState>
-    implements $DrawBoardStateCopyWith<$Res> {
-  _$DrawBoardStateCopyWithImpl(this._value, this._then);
+class _$WhiteboardStateCopyWithImpl<$Res, $Val extends WhiteboardState>
+    implements $WhiteboardStateCopyWith<$Res> {
+  _$WhiteboardStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -228,7 +228,7 @@ class _$DrawBoardStateCopyWithImpl<$Res, $Val extends DrawBoardState>
 
 /// @nodoc
 abstract class _$$DrawingCopyWith<$Res>
-    implements $DrawBoardStateCopyWith<$Res> {
+    implements $WhiteboardStateCopyWith<$Res> {
   factory _$$DrawingCopyWith(_$Drawing value, $Res Function(_$Drawing) then) =
       __$$DrawingCopyWithImpl<$Res>;
   @override
@@ -254,7 +254,7 @@ abstract class _$$DrawingCopyWith<$Res>
 
 /// @nodoc
 class __$$DrawingCopyWithImpl<$Res>
-    extends _$DrawBoardStateCopyWithImpl<$Res, _$Drawing>
+    extends _$WhiteboardStateCopyWithImpl<$Res, _$Drawing>
     implements _$$DrawingCopyWith<$Res> {
   __$$DrawingCopyWithImpl(_$Drawing _value, $Res Function(_$Drawing) _then)
       : super(_value, _then);
@@ -338,7 +338,7 @@ class _$Drawing implements Drawing {
 
   @override
   String toString() {
-    return 'DrawBoardState.drawing(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
+    return 'WhiteboardState.drawing(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
   }
 
   @override
@@ -484,7 +484,7 @@ class _$Drawing implements Drawing {
   }
 }
 
-abstract class Drawing implements DrawBoardState {
+abstract class Drawing implements WhiteboardState {
   const factory Drawing(
       {final Board board,
       final Offset translation,
@@ -516,7 +516,7 @@ abstract class Drawing implements DrawBoardState {
 
 /// @nodoc
 abstract class _$$MovingCopyWith<$Res>
-    implements $DrawBoardStateCopyWith<$Res> {
+    implements $WhiteboardStateCopyWith<$Res> {
   factory _$$MovingCopyWith(_$Moving value, $Res Function(_$Moving) then) =
       __$$MovingCopyWithImpl<$Res>;
   @override
@@ -542,7 +542,7 @@ abstract class _$$MovingCopyWith<$Res>
 
 /// @nodoc
 class __$$MovingCopyWithImpl<$Res>
-    extends _$DrawBoardStateCopyWithImpl<$Res, _$Moving>
+    extends _$WhiteboardStateCopyWithImpl<$Res, _$Moving>
     implements _$$MovingCopyWith<$Res> {
   __$$MovingCopyWithImpl(_$Moving _value, $Res Function(_$Moving) _then)
       : super(_value, _then);
@@ -626,7 +626,7 @@ class _$Moving implements Moving {
 
   @override
   String toString() {
-    return 'DrawBoardState.moving(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
+    return 'WhiteboardState.moving(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
   }
 
   @override
@@ -772,7 +772,7 @@ class _$Moving implements Moving {
   }
 }
 
-abstract class Moving implements DrawBoardState {
+abstract class Moving implements WhiteboardState {
   const factory Moving(
       {final Board board,
       final Offset translation,
