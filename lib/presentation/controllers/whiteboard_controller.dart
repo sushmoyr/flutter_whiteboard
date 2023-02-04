@@ -8,6 +8,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/models/attributes/attributes.dart';
 
+final whiteboardControllerProvider =
+    StateNotifierProvider<WhiteboardController, WhiteboardState>((ref) {
+  throw UnimplementedError();
+});
+
 class PageSize {
   final double width;
   final double height;
