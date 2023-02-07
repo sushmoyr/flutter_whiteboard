@@ -21,7 +21,7 @@ class PageSize {
 
   double get ratio => width / height;
 
-  static PageSize get a4 => PageSize(8.5, 11);
+  static PageSize get a4 => PageSize(2480, 3508);
 }
 
 class WhiteboardController extends StateNotifier<WhiteboardState>
@@ -49,7 +49,8 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
           ),
         );
 
-  void onPointerDown(PointerDownEvent event) {
+  void onPointerDown(PointerDownEvent event, Size size) {
+    print('Pointer down at: ${event.localPosition}');
     state = state.map(
       drawing: (drawing) {
         Sketch sketch = _createNewSketch(drawing);
@@ -59,7 +60,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
     );
   }
 
-  void onPointerUpdate(PointerMoveEvent event) {
+  void onPointerMove(PointerMoveEvent event, Size size) {
     state = state.map(
       drawing: (drawing) {
         WhiteboardState tempState = drawing;
@@ -69,9 +70,13 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
         Offset position =
             (event.localPosition - state.translation) / state.scale;
         Point point = position.asPoint;
-        return tempState.copyWith.activeSketch!(
-          points: [...tempState.activeSketch!.points, point],
-        );
+        Point pointI = point.respectTo(size);
+        // print("Point to insert: $pointI");
+        final newSketch = state.sketchFactory
+            .find(state.activeSketch!.name)
+            ?.build(state.activeSketch!, point);
+
+        return tempState.copyWith(activeSketch: newSketch);
       },
       moving: (moving) {
         Offset delta = event.delta;
@@ -83,7 +88,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
     );
   }
 
-  void onPointerUp(PointerUpEvent event) {
+  void onPointerUp(PointerUpEvent event, Size size) {
     state = state.map(
       drawing: (drawing) {
         if (drawing.activeSketch == null) return drawing;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whiteboard/presentation/controllers/whiteboard_controller.dart';
+import 'package:flutter_whiteboard/presentation/widgets/background_whiteboard.dart';
+import 'package:flutter_whiteboard/presentation/widgets/foreground_whiteboard.dart';
 
 class Whiteboard extends StatelessWidget {
   const Whiteboard({
@@ -46,10 +48,34 @@ class _Whiteboard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return RepaintBoundary(
-      key: canvasKey,
-      child: Stack(
-        children: [],
+    final state = ref.watch(whiteboardControllerProvider);
+    final board = state.board;
+    final controller = ref.read(whiteboardControllerProvider.notifier);
+    print("w: ${board.width} h: ${board.height}");
+    return InteractiveViewer(
+      scaleEnabled: controller.isMoving,
+      panEnabled: controller.isMoving,
+      child: RepaintBoundary(
+        key: canvasKey,
+        child: AspectRatio(
+          aspectRatio: board.ratio,
+          child: LayoutBuilder(builder: (context, constraints) {
+            final size = Size(board.width, board.height);
+            print(size);
+            return FittedBox(
+              child: SizedBox(
+                width: board.width,
+                height: board.height,
+                child: Stack(
+                  children: [
+                    BackgroundWhiteboard(size: size),
+                    if (!readOnly) ForegroundArtboard(size: size)
+                  ],
+                ),
+              ),
+            );
+          }),
+        ),
       ),
     );
   }

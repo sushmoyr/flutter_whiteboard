@@ -22,4 +22,10 @@ class SketchFactory with _$SketchFactory {
       return null;
     }
   }
+
+  factory SketchFactory.withDefaults(SketchFactory factory) {
+    final initialPainters = const SketchFactory.initial().painters;
+    final userPainters = factory.painters;
+    return SketchFactory({...initialPainters, ...userPainters});
+  }
 }

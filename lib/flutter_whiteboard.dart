@@ -1,7 +1,5 @@
 library flutter_whiteboard;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export './data/data.dart';
+export './domain/domain.dart';
+export './presentation/presentation.dart';

@@ -4,7 +4,7 @@ import '../../data/data.dart';
 import 'sketch_painter.dart';
 
 class PenTool extends SketchPainter {
-  const PenTool() : super(name: "pen");
+  const PenTool() : super(name: "scribble");
 
   @override
   Paint createPaint(Sketch sketch) {
