@@ -52,6 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final WhiteboardController controller = WhiteboardController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.addListener((state) {
+      // print("State changed");
+      setState(() {});
+    });
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -71,6 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    // print("Drawing: ${controller.isDrawing}");
+    // print("Moving: ${controller.isMoving}");
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -84,11 +96,44 @@ class _MyHomePageState extends State<MyHomePage> {
           controller: controller,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: Material(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  controller.selectSketch('scribble');
+                },
+                icon: Icon(Icons.draw),
+                isSelected: controller.isDrawing,
+                color: controller.isDrawing ? Colors.blue : null,
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.selectMoveMode();
+                },
+                icon: Icon(Icons.move_down),
+                isSelected: true,
+                color: controller.isMoving ? Colors.blue : null,
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.undo();
+                },
+                icon: Icon(Icons.undo),
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.redo();
+                },
+                icon: Icon(Icons.redo),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

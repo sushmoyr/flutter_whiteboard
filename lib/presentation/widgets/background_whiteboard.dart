@@ -31,7 +31,7 @@ class BackgroundWhiteboardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.clipRect(Offset.zero & size);
-    print("Background size: $size");
+    // print("Background size: $size");
     Paint backgroundPaint = Paint()..color = Colors.white;
     canvas.drawPaint(backgroundPaint);
     final sketches = state.board.sketches;

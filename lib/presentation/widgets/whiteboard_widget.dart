@@ -51,30 +51,35 @@ class _Whiteboard extends ConsumerWidget {
     final state = ref.watch(whiteboardControllerProvider);
     final board = state.board;
     final controller = ref.read(whiteboardControllerProvider.notifier);
-    print("w: ${board.width} h: ${board.height}");
-    return InteractiveViewer(
-      scaleEnabled: controller.isMoving,
-      panEnabled: controller.isMoving,
-      child: RepaintBoundary(
-        key: canvasKey,
-        child: AspectRatio(
-          aspectRatio: board.ratio,
-          child: LayoutBuilder(builder: (context, constraints) {
-            final size = Size(board.width, board.height);
-            print(size);
-            return FittedBox(
-              child: SizedBox(
-                width: board.width,
-                height: board.height,
-                child: Stack(
-                  children: [
-                    BackgroundWhiteboard(size: size),
-                    if (!readOnly) ForegroundArtboard(size: size)
-                  ],
+    // print("w: ${board.width} h: ${board.height}");
+    return SizedBox.expand(
+      child: InteractiveViewer(
+        scaleEnabled: controller.isMoving,
+        panEnabled: controller.isMoving,
+        // alignment: Alignment.center,
+        maxScale: 5,
+        minScale: 0.5,
+        child: RepaintBoundary(
+          key: canvasKey,
+          child: AspectRatio(
+            aspectRatio: board.ratio,
+            child: LayoutBuilder(builder: (context, constraints) {
+              final size = Size(board.width, board.height);
+              print(size);
+              return FittedBox(
+                child: SizedBox(
+                  width: board.width,
+                  height: board.height,
+                  child: Stack(
+                    children: [
+                      BackgroundWhiteboard(size: size),
+                      if (!readOnly) ForegroundArtboard(size: size)
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
       ),
     );

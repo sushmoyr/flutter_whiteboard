@@ -51,7 +51,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
 
   void onPointerDown(PointerDownEvent event, Size size) {
     print('Pointer down at: ${event.localPosition}');
-    state = state.map(
+    temporaryState = state.map(
       drawing: (drawing) {
         Sketch sketch = _createNewSketch(drawing);
         return drawing.copyWith(activeSketch: sketch);
@@ -61,30 +61,29 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
   }
 
   void onPointerMove(PointerMoveEvent event, Size size) {
-    state = state.map(
+    temporaryState = state.map(
       drawing: (drawing) {
         WhiteboardState tempState = drawing;
         if (drawing.activeSketch == null) {
           tempState = drawing.copyWith(activeSketch: _createNewSketch(drawing));
         }
-        Offset position =
-            (event.localPosition - state.translation) / state.scale;
-        Point point = position.asPoint;
-        Point pointI = point.respectTo(size);
+
+        Point point = event.localPosition.asPoint;
         // print("Point to insert: $pointI");
-        final newSketch = state.sketchFactory
-            .find(state.activeSketch!.name)
-            ?.build(state.activeSketch!, point);
+        final newSketch = tempState.sketchFactory
+            .find(tempState.activeSketch!.name)
+            ?.build(tempState.activeSketch!, point);
 
         return tempState.copyWith(activeSketch: newSketch);
       },
-      moving: (moving) {
-        Offset delta = event.delta;
-        Offset translation = state.translation + delta;
-        return moving.copyWith(
-          translation: translation,
-        );
-      },
+      moving: (moving) => moving,
+      // moving: (moving) {
+      //   Offset delta = event.delta;
+      //   Offset translation = state.translation + delta;
+      //   return moving.copyWith(
+      //     translation: translation,
+      //   );
+      // },
     );
   }
 
@@ -99,6 +98,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
       },
       moving: (moving) => moving,
     );
+    print("Added to history");
   }
 
   void onScaleUpdate(ScaleUpdateDetails details) {
@@ -133,11 +133,19 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
   }
 
   void selectSketch(String name) {
-    state = state.copyWith(selectedSketch: name);
+    temporaryState = WhiteboardState.drawing(
+      board: state.board,
+      translation: state.translation,
+      scale: state.scale,
+      activeSketch: state.activeSketch,
+      sketchFactory: state.sketchFactory,
+      selectedAttributes: state.selectedAttributes,
+      selectedSketch: name,
+    );
   }
 
   void selectMoveMode() {
-    state = WhiteboardState.moving(
+    temporaryState = WhiteboardState.moving(
       board: state.board,
       translation: state.translation,
       scale: state.scale,
@@ -155,7 +163,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
     PaintingStyle? style,
     Color? color,
   }) {
-    state = state.map(
+    temporaryState = state.map(
       drawing: (drawing) {
         Attributes currentAttrs = drawing.selectedAttributes;
         currentAttrs = currentAttrs.copyWith(
