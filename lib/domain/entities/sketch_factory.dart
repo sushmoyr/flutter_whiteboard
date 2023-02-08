@@ -1,3 +1,5 @@
+import 'package:flutter_whiteboard/domain/entities/eraser_tool_painter.dart';
+import 'package:flutter_whiteboard/domain/entities/marker_tool_painter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'pen_tool_painter.dart';
@@ -12,8 +14,12 @@ class SketchFactory with _$SketchFactory {
   const factory SketchFactory(Set<SketchPainter> painters) = _SketchFactory;
 
   const factory SketchFactory.initial(
-          {@Default({PenTool()}) Set<SketchPainter> painters}) =
-      _SketchFactoryInitial;
+      {@Default({
+        PenTool(),
+        MarkerTool(),
+        EraserTool(),
+      })
+          Set<SketchPainter> painters}) = _SketchFactoryInitial;
 
   SketchPainter? find(String name) {
     try {

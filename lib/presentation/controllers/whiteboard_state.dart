@@ -20,7 +20,7 @@ class WhiteboardState with _$WhiteboardState {
     @Default(Offset.zero) Offset translation,
     @Default(1.0) double scale,
     Sketch? activeSketch,
-    @Default('scribble') String selectedSketch,
+    @Default('pen') String selectedSketch,
     @Default(Attributes.initial()) Attributes selectedAttributes,
     @Default(SketchFactory.initial()) SketchFactory sketchFactory,
   }) = Drawing;
@@ -30,7 +30,7 @@ class WhiteboardState with _$WhiteboardState {
     @Default(Offset.zero) Offset translation,
     @Default(1.0) double scale,
     Sketch? activeSketch,
-    @Default('scribble') String selectedSketch,
+    @Default('pen') String selectedSketch,
     @Default(Attributes.initial()) Attributes selectedAttributes,
     @Default(SketchFactory.initial()) SketchFactory sketchFactory,
   }) = Moving;

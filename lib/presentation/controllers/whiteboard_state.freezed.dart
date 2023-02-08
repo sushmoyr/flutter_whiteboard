@@ -311,7 +311,7 @@ class _$Drawing implements Drawing {
       this.translation = Offset.zero,
       this.scale = 1.0,
       this.activeSketch,
-      this.selectedSketch = 'scribble',
+      this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),
       this.sketchFactory = const SketchFactory.initial()});
 
@@ -599,7 +599,7 @@ class _$Moving implements Moving {
       this.translation = Offset.zero,
       this.scale = 1.0,
       this.activeSketch,
-      this.selectedSketch = 'scribble',
+      this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),
       this.sketchFactory = const SketchFactory.initial()});
 

@@ -13,15 +13,17 @@ final whiteboardControllerProvider =
   throw UnimplementedError();
 });
 
-class PageSize {
+abstract class PageSize {
   final double width;
   final double height;
 
   PageSize(this.width, this.height);
 
   double get ratio => width / height;
+}
 
-  static PageSize get a4 => PageSize(2480, 3508);
+class A4Page extends PageSize {
+  A4Page() : super(2480, 3508);
 }
 
 class WhiteboardController extends StateNotifier<WhiteboardState>
@@ -32,8 +34,8 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
   }) : super(
           WhiteboardState.drawing(
             board: Board.empty(
-              width: pageSize?.width ?? PageSize.a4.width,
-              height: pageSize?.height ?? PageSize.a4.height,
+              width: pageSize?.width ?? A4Page().width,
+              height: pageSize?.height ?? A4Page().height,
             ),
             sketchFactory: sketchFactory ?? const SketchFactory.initial(),
           ),
@@ -48,6 +50,14 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
             sketchFactory: sketchFactory ?? const SketchFactory.initial(),
           ),
         );
+
+  bool get isMoving => state is Moving;
+
+  bool get isDrawing => state is Drawing;
+
+  Board get board => state.board;
+
+  bool isToolSelected(String name) => state.selectedSketch == name;
 
   void onPointerDown(PointerDownEvent event, Size size) {
     print('Pointer down at: ${event.localPosition}');
@@ -201,10 +211,4 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
       moving: (Moving value) => false,
     );
   }
-
-  bool get isMoving => state is Moving;
-
-  bool get isDrawing => state is Drawing;
-
-  Board get board => state.board;
 }

@@ -278,7 +278,11 @@ class __$$_SketchFactoryInitialCopyWithImpl<$Res>
 
 class _$_SketchFactoryInitial extends _SketchFactoryInitial {
   const _$_SketchFactoryInitial(
-      {final Set<SketchPainter> painters = const {PenTool()}})
+      {final Set<SketchPainter> painters = const {
+        PenTool(),
+        MarkerTool(),
+        EraserTool()
+      }})
       : _painters = painters,
         super._();
 

@@ -104,11 +104,38 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               IconButton(
                 onPressed: () {
-                  controller.selectSketch('scribble');
+                  controller.selectSketch('pen');
                 },
                 icon: Icon(Icons.draw),
-                isSelected: controller.isDrawing,
-                color: controller.isDrawing ? Colors.blue : null,
+                isSelected:
+                    controller.isDrawing && controller.isSketchActive('pen'),
+                color: controller.isDrawing && controller.isSketchActive('pen')
+                    ? Colors.blue
+                    : null,
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.selectSketch('marker');
+                },
+                icon: Icon(Icons.format_paint),
+                isSelected:
+                    controller.isDrawing && controller.isSketchActive('marker'),
+                color:
+                    controller.isDrawing && controller.isSketchActive('marker')
+                        ? Colors.blue
+                        : null,
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.selectSketch('eraser');
+                },
+                icon: Icon(Icons.remove_circle_outline),
+                isSelected:
+                    controller.isDrawing && controller.isSketchActive('eraser'),
+                color:
+                    controller.isDrawing && controller.isSketchActive('eraser')
+                        ? Colors.blue
+                        : null,
               ),
               IconButton(
                 onPressed: () {
