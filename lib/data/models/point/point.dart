@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'point.freezed.dart';
 part 'point.g.dart';
 
+/// This class represents a point in 2d plane.
 @freezed
 class Point with _$Point {
   const Point._();
@@ -18,5 +19,6 @@ class Point with _$Point {
         y: y / origin.height,
       );
 
+  /// Creates a Point object from JSON object.
   factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);
 }

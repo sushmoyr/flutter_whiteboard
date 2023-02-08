@@ -6,12 +6,16 @@ import 'package:flutter_whiteboard/presentation/controllers/whiteboard_state.dar
 
 import '../../data/data.dart';
 
+/// The custom paint that is responsible for drawing the background sketches.
+/// Already existing data is drawn on the background statically. This widget
+/// controls the background drawing operations.
 class BackgroundWhiteboard extends ConsumerWidget {
   const BackgroundWhiteboard({
     Key? key,
     required this.size,
   }) : super(key: key);
 
+  /// The size of the canvas.
   final Size size;
 
   @override
@@ -24,7 +28,10 @@ class BackgroundWhiteboard extends ConsumerWidget {
   }
 }
 
+/// The [CustomPainter] subclass which is responsible for painting background
+/// sketches.
 class BackgroundWhiteboardPainter extends CustomPainter {
+  /// The state class of the whiteboard controller.
   final WhiteboardState state;
   BackgroundWhiteboardPainter(this.state);
 

@@ -17,8 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WhiteboardState {
   Board get board => throw _privateConstructorUsedError;
-  Offset get translation => throw _privateConstructorUsedError;
-  double get scale => throw _privateConstructorUsedError;
   Sketch? get activeSketch => throw _privateConstructorUsedError;
   String get selectedSketch => throw _privateConstructorUsedError;
   Attributes get selectedAttributes => throw _privateConstructorUsedError;
@@ -27,8 +25,6 @@ mixin _$WhiteboardState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
@@ -36,8 +32,6 @@ mixin _$WhiteboardState {
         drawing,
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
@@ -47,45 +41,21 @@ mixin _$WhiteboardState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
     required TResult orElse(),
   }) =>
@@ -123,8 +93,6 @@ abstract class $WhiteboardStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Board board,
-      Offset translation,
-      double scale,
       Sketch? activeSketch,
       String selectedSketch,
       Attributes selectedAttributes,
@@ -150,8 +118,6 @@ class _$WhiteboardStateCopyWithImpl<$Res, $Val extends WhiteboardState>
   @override
   $Res call({
     Object? board = null,
-    Object? translation = null,
-    Object? scale = null,
     Object? activeSketch = freezed,
     Object? selectedSketch = null,
     Object? selectedAttributes = null,
@@ -162,14 +128,6 @@ class _$WhiteboardStateCopyWithImpl<$Res, $Val extends WhiteboardState>
           ? _value.board
           : board // ignore: cast_nullable_to_non_nullable
               as Board,
-      translation: null == translation
-          ? _value.translation
-          : translation // ignore: cast_nullable_to_non_nullable
-              as Offset,
-      scale: null == scale
-          ? _value.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double,
       activeSketch: freezed == activeSketch
           ? _value.activeSketch
           : activeSketch // ignore: cast_nullable_to_non_nullable
@@ -235,8 +193,6 @@ abstract class _$$DrawingCopyWith<$Res>
   @useResult
   $Res call(
       {Board board,
-      Offset translation,
-      double scale,
       Sketch? activeSketch,
       String selectedSketch,
       Attributes selectedAttributes,
@@ -263,8 +219,6 @@ class __$$DrawingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? board = null,
-    Object? translation = null,
-    Object? scale = null,
     Object? activeSketch = freezed,
     Object? selectedSketch = null,
     Object? selectedAttributes = null,
@@ -275,14 +229,6 @@ class __$$DrawingCopyWithImpl<$Res>
           ? _value.board
           : board // ignore: cast_nullable_to_non_nullable
               as Board,
-      translation: null == translation
-          ? _value.translation
-          : translation // ignore: cast_nullable_to_non_nullable
-              as Offset,
-      scale: null == scale
-          ? _value.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double,
       activeSketch: freezed == activeSketch
           ? _value.activeSketch
           : activeSketch // ignore: cast_nullable_to_non_nullable
@@ -308,8 +254,6 @@ class __$$DrawingCopyWithImpl<$Res>
 class _$Drawing implements Drawing {
   const _$Drawing(
       {this.board = const Board.empty(),
-      this.translation = Offset.zero,
-      this.scale = 1.0,
       this.activeSketch,
       this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),
@@ -318,12 +262,6 @@ class _$Drawing implements Drawing {
   @override
   @JsonKey()
   final Board board;
-  @override
-  @JsonKey()
-  final Offset translation;
-  @override
-  @JsonKey()
-  final double scale;
   @override
   final Sketch? activeSketch;
   @override
@@ -338,7 +276,7 @@ class _$Drawing implements Drawing {
 
   @override
   String toString() {
-    return 'WhiteboardState.drawing(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
+    return 'WhiteboardState.drawing(board: $board, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
   }
 
   @override
@@ -347,9 +285,6 @@ class _$Drawing implements Drawing {
         (other.runtimeType == runtimeType &&
             other is _$Drawing &&
             (identical(other.board, board) || other.board == board) &&
-            (identical(other.translation, translation) ||
-                other.translation == translation) &&
-            (identical(other.scale, scale) || other.scale == scale) &&
             (identical(other.activeSketch, activeSketch) ||
                 other.activeSketch == activeSketch) &&
             (identical(other.selectedSketch, selectedSketch) ||
@@ -361,8 +296,8 @@ class _$Drawing implements Drawing {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, board, translation, scale,
-      activeSketch, selectedSketch, selectedAttributes, sketchFactory);
+  int get hashCode => Object.hash(runtimeType, board, activeSketch,
+      selectedSketch, selectedAttributes, sketchFactory);
 
   @JsonKey(ignore: true)
   @override
@@ -375,8 +310,6 @@ class _$Drawing implements Drawing {
   TResult when<TResult extends Object?>({
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
@@ -384,70 +317,44 @@ class _$Drawing implements Drawing {
         drawing,
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
             SketchFactory sketchFactory)
         moving,
   }) {
-    return drawing(board, translation, scale, activeSketch, selectedSketch,
-        selectedAttributes, sketchFactory);
+    return drawing(
+        board, activeSketch, selectedSketch, selectedAttributes, sketchFactory);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
   }) {
-    return drawing?.call(board, translation, scale, activeSketch,
-        selectedSketch, selectedAttributes, sketchFactory);
+    return drawing?.call(
+        board, activeSketch, selectedSketch, selectedAttributes, sketchFactory);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
     required TResult orElse(),
   }) {
     if (drawing != null) {
-      return drawing(board, translation, scale, activeSketch, selectedSketch,
-          selectedAttributes, sketchFactory);
+      return drawing(board, activeSketch, selectedSketch, selectedAttributes,
+          sketchFactory);
     }
     return orElse();
   }
@@ -487,8 +394,6 @@ class _$Drawing implements Drawing {
 abstract class Drawing implements WhiteboardState {
   const factory Drawing(
       {final Board board,
-      final Offset translation,
-      final double scale,
       final Sketch? activeSketch,
       final String selectedSketch,
       final Attributes selectedAttributes,
@@ -496,10 +401,6 @@ abstract class Drawing implements WhiteboardState {
 
   @override
   Board get board;
-  @override
-  Offset get translation;
-  @override
-  double get scale;
   @override
   Sketch? get activeSketch;
   @override
@@ -523,8 +424,6 @@ abstract class _$$MovingCopyWith<$Res>
   @useResult
   $Res call(
       {Board board,
-      Offset translation,
-      double scale,
       Sketch? activeSketch,
       String selectedSketch,
       Attributes selectedAttributes,
@@ -551,8 +450,6 @@ class __$$MovingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? board = null,
-    Object? translation = null,
-    Object? scale = null,
     Object? activeSketch = freezed,
     Object? selectedSketch = null,
     Object? selectedAttributes = null,
@@ -563,14 +460,6 @@ class __$$MovingCopyWithImpl<$Res>
           ? _value.board
           : board // ignore: cast_nullable_to_non_nullable
               as Board,
-      translation: null == translation
-          ? _value.translation
-          : translation // ignore: cast_nullable_to_non_nullable
-              as Offset,
-      scale: null == scale
-          ? _value.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double,
       activeSketch: freezed == activeSketch
           ? _value.activeSketch
           : activeSketch // ignore: cast_nullable_to_non_nullable
@@ -596,8 +485,6 @@ class __$$MovingCopyWithImpl<$Res>
 class _$Moving implements Moving {
   const _$Moving(
       {this.board = const Board.empty(),
-      this.translation = Offset.zero,
-      this.scale = 1.0,
       this.activeSketch,
       this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),
@@ -606,12 +493,6 @@ class _$Moving implements Moving {
   @override
   @JsonKey()
   final Board board;
-  @override
-  @JsonKey()
-  final Offset translation;
-  @override
-  @JsonKey()
-  final double scale;
   @override
   final Sketch? activeSketch;
   @override
@@ -626,7 +507,7 @@ class _$Moving implements Moving {
 
   @override
   String toString() {
-    return 'WhiteboardState.moving(board: $board, translation: $translation, scale: $scale, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
+    return 'WhiteboardState.moving(board: $board, activeSketch: $activeSketch, selectedSketch: $selectedSketch, selectedAttributes: $selectedAttributes, sketchFactory: $sketchFactory)';
   }
 
   @override
@@ -635,9 +516,6 @@ class _$Moving implements Moving {
         (other.runtimeType == runtimeType &&
             other is _$Moving &&
             (identical(other.board, board) || other.board == board) &&
-            (identical(other.translation, translation) ||
-                other.translation == translation) &&
-            (identical(other.scale, scale) || other.scale == scale) &&
             (identical(other.activeSketch, activeSketch) ||
                 other.activeSketch == activeSketch) &&
             (identical(other.selectedSketch, selectedSketch) ||
@@ -649,8 +527,8 @@ class _$Moving implements Moving {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, board, translation, scale,
-      activeSketch, selectedSketch, selectedAttributes, sketchFactory);
+  int get hashCode => Object.hash(runtimeType, board, activeSketch,
+      selectedSketch, selectedAttributes, sketchFactory);
 
   @JsonKey(ignore: true)
   @override
@@ -663,8 +541,6 @@ class _$Moving implements Moving {
   TResult when<TResult extends Object?>({
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
@@ -672,70 +548,44 @@ class _$Moving implements Moving {
         drawing,
     required TResult Function(
             Board board,
-            Offset translation,
-            double scale,
             Sketch? activeSketch,
             String selectedSketch,
             Attributes selectedAttributes,
             SketchFactory sketchFactory)
         moving,
   }) {
-    return moving(board, translation, scale, activeSketch, selectedSketch,
-        selectedAttributes, sketchFactory);
+    return moving(
+        board, activeSketch, selectedSketch, selectedAttributes, sketchFactory);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult? Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult? Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
   }) {
-    return moving?.call(board, translation, scale, activeSketch, selectedSketch,
-        selectedAttributes, sketchFactory);
+    return moving?.call(
+        board, activeSketch, selectedSketch, selectedAttributes, sketchFactory);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         drawing,
-    TResult Function(
-            Board board,
-            Offset translation,
-            double scale,
-            Sketch? activeSketch,
-            String selectedSketch,
-            Attributes selectedAttributes,
-            SketchFactory sketchFactory)?
+    TResult Function(Board board, Sketch? activeSketch, String selectedSketch,
+            Attributes selectedAttributes, SketchFactory sketchFactory)?
         moving,
     required TResult orElse(),
   }) {
     if (moving != null) {
-      return moving(board, translation, scale, activeSketch, selectedSketch,
-          selectedAttributes, sketchFactory);
+      return moving(board, activeSketch, selectedSketch, selectedAttributes,
+          sketchFactory);
     }
     return orElse();
   }
@@ -775,8 +625,6 @@ class _$Moving implements Moving {
 abstract class Moving implements WhiteboardState {
   const factory Moving(
       {final Board board,
-      final Offset translation,
-      final double scale,
       final Sketch? activeSketch,
       final String selectedSketch,
       final Attributes selectedAttributes,
@@ -784,10 +632,6 @@ abstract class Moving implements WhiteboardState {
 
   @override
   Board get board;
-  @override
-  Offset get translation;
-  @override
-  double get scale;
   @override
   Sketch? get activeSketch;
   @override

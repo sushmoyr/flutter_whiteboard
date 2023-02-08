@@ -20,8 +20,14 @@ Sketch _$SketchFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Sketch {
+  /// a required string representing the name of the drawing.
   String get name => throw _privateConstructorUsedError;
+
+  /// a required list of Point objects representing the points in the drawing.
   List<Point> get points => throw _privateConstructorUsedError;
+
+  /// an optional Attributes object that stores information about the drawing
+  /// style, including color and stroke width. The default value is
   Attributes get attributes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -136,9 +142,14 @@ class _$_Sketch implements _Sketch {
   factory _$_Sketch.fromJson(Map<String, dynamic> json) =>
       _$$_SketchFromJson(json);
 
+  /// a required string representing the name of the drawing.
   @override
   final String name;
+
+  /// a required list of Point objects representing the points in the drawing.
   final List<Point> _points;
+
+  /// a required list of Point objects representing the points in the drawing.
   @override
   List<Point> get points {
     if (_points is EqualUnmodifiableListView) return _points;
@@ -146,6 +157,8 @@ class _$_Sketch implements _Sketch {
     return EqualUnmodifiableListView(_points);
   }
 
+  /// an optional Attributes object that stores information about the drawing
+  /// style, including color and stroke width. The default value is
   @override
   @JsonKey()
   final Attributes attributes;
@@ -194,10 +207,17 @@ abstract class _Sketch implements Sketch {
   factory _Sketch.fromJson(Map<String, dynamic> json) = _$_Sketch.fromJson;
 
   @override
+
+  /// a required string representing the name of the drawing.
   String get name;
   @override
+
+  /// a required list of Point objects representing the points in the drawing.
   List<Point> get points;
   @override
+
+  /// an optional Attributes object that stores information about the drawing
+  /// style, including color and stroke width. The default value is
   Attributes get attributes;
   @override
   @JsonKey(ignore: true)

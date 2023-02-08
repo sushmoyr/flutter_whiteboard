@@ -362,8 +362,8 @@ class __$$_InitialBoardCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_InitialBoard extends _InitialBoard {
   const _$_InitialBoard(
-      {this.width = 8.5,
-      this.height = 11,
+      {this.width = 2480.0,
+      this.height = 3508.0,
       final List<Sketch> sketches = const [],
       final String? $type})
       : _sketches = sketches,

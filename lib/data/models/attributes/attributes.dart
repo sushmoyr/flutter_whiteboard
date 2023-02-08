@@ -6,6 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'attributes.freezed.dart';
 
+/// The Attributes class is a data class that stores information about the style
+/// of a sketch. It is a part of the Sketch class and is used to define the
+/// attributes of each point in a sketch.
 @Freezed(
   fromJson: false,
   toJson: false,
@@ -14,6 +17,12 @@ part 'attributes.freezed.dart';
 class Attributes with _$Attributes {
   const Attributes._();
 
+  /// The default constructor for this class.
+  /// - `strokeWidth`: The width of the stroke for the sketch
+  /// - `color`: The color of the stroke for the sketch
+  /// - `strokeJoin`: The type of join for the sketch
+  /// - `strokeCap`: The type of cap for the stroke
+  /// - `style`: The painting style for the sketch
   const factory Attributes({
     required double strokeWidth,
     required Color color,
@@ -22,6 +31,7 @@ class Attributes with _$Attributes {
     required PaintingStyle style,
   }) = _Attributes;
 
+  /// The constructor for creating an instance with default values.
   const factory Attributes.initial({
     @Default(2.0) double strokeWidth,
     @Default(Color(0xFF000000)) Color color,
@@ -30,6 +40,7 @@ class Attributes with _$Attributes {
     @Default(PaintingStyle.stroke) PaintingStyle style,
   }) = DefaultAttribute;
 
+  /// Generates an instance from json document.
   factory Attributes.fromJson(Map<String, dynamic> json) {
     return Attributes(
       strokeWidth: json["strokeWidth"],
@@ -40,6 +51,7 @@ class Attributes with _$Attributes {
     );
   }
 
+  /// Converts to a map to use as json.
   Map<String, dynamic> toJson() {
     return {
       "strokeWidth": strokeWidth,

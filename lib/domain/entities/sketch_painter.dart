@@ -5,16 +5,32 @@ import 'package:flutter/foundation.dart';
 import '../../data/data.dart';
 import '../mappers/point_offset_converter.dart';
 
+/// The [SketchPainter] class is an abstract class that represents a sketch
+/// painter. It defines the basic properties and methods that a sketch painter
+/// should have.
+///
+/// ## Usage
+///
+/// The class has a @mustCallSuper annotation on its constructor to indicate that
+/// the derived classes should call the super constructor in their constructors.
+// The createPaint method creates a paint object using the attributes of the
+// given sketch. The paint method uses the createPaint method to get the paint
+// and then draws the sketch on the canvas. The build method creates a new sketch
+// by copying the given active sketch and adding the given point to the list of
+// points of the sketch.
 abstract class SketchPainter {
+  /// The name of the sketch for which the painter is defined.
   final String name;
 
   @mustCallSuper
   const SketchPainter({required this.name});
 
+  /// Creates a [Paint] object to be used for painting the sketch.
   Paint createPaint(Sketch sketch) {
     return sketch.attributes.paint;
   }
 
+  /// Paints the sketch on the given Canvas.
   void paint(Canvas canvas, Sketch sketch) {
     Paint paint = createPaint(sketch);
 
@@ -36,6 +52,7 @@ abstract class SketchPainter {
     canvas.drawPath(path, paint);
   }
 
+  /// Builds a new sketch from the given active sketch and point.
   Sketch build(Sketch activeSketch, Point point) {
     return activeSketch.copyWith(
       points: [...activeSketch.points, point],

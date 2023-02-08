@@ -13,6 +13,10 @@ enum _EraserSize {
   const _EraserSize(this.value);
 }
 
+/// The EraserTool class extends the SketchPainter class and is used to erase
+/// sketches on the canvas. The eraser is created with a white color, a round
+/// stroke cap, and a stroke width of 60. The eraser size is determined based
+/// on the original stroke width of the sketch.
 class EraserTool extends SketchPainter {
   const EraserTool() : super(name: "eraser");
 
