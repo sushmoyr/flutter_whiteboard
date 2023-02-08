@@ -85,7 +85,17 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
 
   /// A method that returns `true` if the specified [name] matches the [name]
   /// of the currently selected sketch, or `false` otherwise.
+  @Deprecated('Use isSketchActive method')
   bool isToolSelected(String name) => state.selectedSketch == name;
+
+  /// A method that returns `true` if the specified [name] matches the [name]
+  /// of the currently selected sketch and current state is [Drawing], or `false` otherwise.
+  bool isSketchActive(String name) {
+    return state.map<bool>(
+      drawing: (Drawing value) => value.selectedSketch == name,
+      moving: (Moving value) => false,
+    );
+  }
 
   /// A method that is called when a pointer is pressed down on the whiteboard.
   /// The [PointerDownEvent] is passed as parameter.
@@ -203,11 +213,4 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
 
   /// Gets the json data
   Map<String, dynamic> get json => data.toJson();
-
-  bool isSketchActive(String name) {
-    return state.map<bool>(
-      drawing: (Drawing value) => value.selectedSketch == name,
-      moving: (Moving value) => false,
-    );
-  }
 }
