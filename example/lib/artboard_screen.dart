@@ -20,7 +20,8 @@ class _ArtboardScreenState extends State<ArtboardScreen> {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
-              print(controller.data);
+              print(controller.data.toJson());
+              Navigator.pop(context, controller.data);
             },
           )
         ],
