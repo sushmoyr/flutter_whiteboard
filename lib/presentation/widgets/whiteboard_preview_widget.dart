@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whiteboard/data/data.dart';
 
 import '../controllers/whiteboard_controller.dart';
+import '../controllers/whiteboard_state.dart';
 import 'whiteboard_frame.dart';
 
 class WhiteboardPreview extends StatelessWidget {
@@ -17,11 +18,9 @@ class WhiteboardPreview extends StatelessWidget {
     print("$runtimeType: ${board.sketches.length}");
     return ProviderScope(
       overrides: [
-        whiteboardControllerProvider.overrideWith(
-          (ref) {
-            return WhiteboardController.fromDocument(board: board);
-          },
-        ),
+        whiteboardControllerProvider.overrideWithProvider(
+            StateNotifierProvider<WhiteboardController, WhiteboardState>(
+                (ref) => WhiteboardController.fromDocument(board: board))),
       ],
       child: _WhiteboardPreview(
         onTap: onTap,

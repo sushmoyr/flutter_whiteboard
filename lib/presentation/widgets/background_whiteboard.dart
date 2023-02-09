@@ -21,6 +21,7 @@ class BackgroundWhiteboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(whiteboardControllerProvider);
+    print("$runtimeType : ${state.board.sketches.length}");
     return CustomPaint(
       painter: BackgroundWhiteboardPainter(state),
       size: size,
