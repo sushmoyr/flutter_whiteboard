@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter_whiteboard/flutter_whiteboard.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../sketch/sketch.dart';
@@ -16,22 +17,14 @@ part 'board.g.dart';
 class Board with _$Board {
   const Board._();
   const factory Board({
-    required double width,
-    required double height,
+    @Default(A4Page()) size,
     @Default([]) List<Sketch> sketches,
   }) = _Board;
 
-  /// Creates an empty board with default values.
-  const factory Board.empty({
-    @Default(2480.0) double width,
-    @Default(3508.0) double height,
-    @Default([]) List<Sketch> sketches,
-  }) = _InitialBoard;
-
   factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
 
-  /// Gets the size of this whiteboard in [Size] object.
-  Size get size => Size(width, height);
+  double get width => size.width;
+  double get height => size.height;
 
   /// Gets the aspect ratio of this whiteboard.
   double get ratio => width / height;

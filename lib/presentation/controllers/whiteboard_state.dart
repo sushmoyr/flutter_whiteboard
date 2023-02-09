@@ -19,7 +19,7 @@ class WhiteboardState with _$WhiteboardState {
   //  - `selectedAttributes`: The Attributes of the currently selected sketch tool. Defaults to the initial Attributes object.
   //  - `sketchFactory`: The SketchFactory object that creates sketches. Defaults to the initial SketchFactory object.
   const factory WhiteboardState.drawing({
-    @Default(Board.empty()) Board board,
+    @Default(Board()) Board board,
     Sketch? activeSketch,
     @Default('pen') String selectedSketch,
     @Default(Attributes.initial()) Attributes selectedAttributes,
@@ -35,7 +35,7 @@ class WhiteboardState with _$WhiteboardState {
   //  - `selectedAttributes`: The Attributes of the currently selected sketch tool. Defaults to the initial Attributes object.
   //  - `sketchFactory`: The SketchFactory object that creates sketches. Defaults to the initial SketchFactory object.
   const factory WhiteboardState.moving({
-    @Default(Board.empty()) Board board,
+    @Default(Board()) Board board,
     Sketch? activeSketch,
     @Default('pen') String selectedSketch,
     @Default(Attributes.initial()) Attributes selectedAttributes,

@@ -253,7 +253,7 @@ class __$$DrawingCopyWithImpl<$Res>
 
 class _$Drawing implements Drawing {
   const _$Drawing(
-      {this.board = const Board.empty(),
+      {this.board = const Board(),
       this.activeSketch,
       this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),
@@ -484,7 +484,7 @@ class __$$MovingCopyWithImpl<$Res>
 
 class _$Moving implements Moving {
   const _$Moving(
-      {this.board = const Board.empty(),
+      {this.board = const Board(),
       this.activeSketch,
       this.selectedSketch = 'pen',
       this.selectedAttributes = const Attributes.initial(),

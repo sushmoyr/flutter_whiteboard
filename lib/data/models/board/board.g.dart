@@ -7,37 +7,14 @@ part of 'board.dart';
 // **************************************************************************
 
 _$_Board _$$_BoardFromJson(Map<String, dynamic> json) => _$_Board(
-      width: (json['width'] as num).toDouble(),
-      height: (json['height'] as num).toDouble(),
+      size: json['size'] ?? const A4Page(),
       sketches: (json['sketches'] as List<dynamic>?)
               ?.map((e) => Sketch.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_BoardToJson(_$_Board instance) => <String, dynamic>{
-      'width': instance.width,
-      'height': instance.height,
+      'size': instance.size,
       'sketches': instance.sketches.map((e) => e.toJson()).toList(),
-      'runtimeType': instance.$type,
-    };
-
-_$_InitialBoard _$$_InitialBoardFromJson(Map<String, dynamic> json) =>
-    _$_InitialBoard(
-      width: (json['width'] as num?)?.toDouble() ?? 2480.0,
-      height: (json['height'] as num?)?.toDouble() ?? 3508.0,
-      sketches: (json['sketches'] as List<dynamic>?)
-              ?.map((e) => Sketch.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$_InitialBoardToJson(_$_InitialBoard instance) =>
-    <String, dynamic>{
-      'width': instance.width,
-      'height': instance.height,
-      'sketches': instance.sketches.map((e) => e.toJson()).toList(),
-      'runtimeType': instance.$type,
     };

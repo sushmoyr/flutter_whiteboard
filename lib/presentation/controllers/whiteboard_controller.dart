@@ -49,9 +49,8 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
     SketchFactory? sketchFactory,
   }) : super(
           WhiteboardState.drawing(
-            board: Board.empty(
-              width: pageSize?.width ?? A4Page().width,
-              height: pageSize?.height ?? A4Page().height,
+            board: Board(
+              size: pageSize ?? const A4Page(),
             ),
             sketchFactory: sketchFactory ?? const SketchFactory.initial(),
           ),
@@ -100,7 +99,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
   /// A method that is called when a pointer is pressed down on the whiteboard.
   /// The [PointerDownEvent] is passed as parameter.
   void onPointerDown(PointerDownEvent event) {
-    print('Pointer down at: ${event.localPosition}');
+    // print('Pointer down at: ${event.localPosition}');
     temporaryState = state.map(
       drawing: (drawing) {
         Sketch sketch = _createNewSketch(drawing);
@@ -108,13 +107,13 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
       },
       moving: (moving) => moving,
     );
-    print("Active Sketch: ${state.activeSketch?.name}");
+    // print("Active Sketch: ${state.activeSketch?.name}");
   }
 
   /// A method that is called when a pointer moves on the whiteboard.
   /// The [PointerMoveEvent] is passed as parameter.
   void onPointerMove(PointerMoveEvent event) {
-    print("Pointer move event: ${event}");
+    // print("Pointer move event: ${event}");
     temporaryState = state.map(
       drawing: (drawing) {
         WhiteboardState tempState = drawing;
