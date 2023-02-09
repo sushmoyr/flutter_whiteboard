@@ -44,7 +44,10 @@ class _WhiteboardPreview extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final board = ref.watch(whiteboardControllerProvider).board;
 
-    final frame = WhiteboardFrame(board: board);
+    final frame = WhiteboardFrame(
+      board: board,
+      readOnly: true,
+    );
     const heroTag = "WhiteboardPreview";
 
     void openInFullScreen() {

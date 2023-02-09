@@ -45,7 +45,6 @@ class Whiteboard extends StatelessWidget {
         whiteboardControllerProvider.overrideWith((ref) => controller),
       ],
       child: _Whiteboard(
-        readOnly: _readOnly,
         canvasKey: canvasKey,
       ),
     );
@@ -57,13 +56,8 @@ class Whiteboard extends StatelessWidget {
 class _Whiteboard extends ConsumerWidget {
   const _Whiteboard({
     Key? key,
-    required this.readOnly,
     required this.canvasKey,
   }) : super(key: key);
-
-  /// Whether this widget supports drawing operations or not. If read only is set
-  /// to true, no drawing operations are made.
-  final bool readOnly;
 
   /// An optional key which is used in the repaint boundary widget inside.
   final GlobalKey? canvasKey;

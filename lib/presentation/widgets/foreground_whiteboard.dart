@@ -18,11 +18,11 @@ class ForegroundArtboard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(whiteboardControllerProvider);
     final controller = ref.read(whiteboardControllerProvider.notifier);
-    // print("Foreground artboard");
+    print("Foreground artboard");
     return Listener(
-      onPointerDown: (event) => controller.onPointerDown,
-      onPointerUp: (event) => controller.onPointerUp,
-      onPointerMove: (event) => controller.onPointerMove,
+      onPointerDown: controller.onPointerDown,
+      onPointerUp: controller.onPointerUp,
+      onPointerMove: controller.onPointerMove,
       child: CustomPaint(
         painter: ForegroundPainter(state),
         size: size,
@@ -55,7 +55,7 @@ class ForegroundPainter extends CustomPainter {
   // to be painted on the canvas.
   @override
   void paint(Canvas canvas, Size size) {
-    // print("Foreground size: $size");
+    print("Foreground size: $size");
     // canvas.clipRect(Offset.zero & size);
     final sketch = state.activeSketch;
     if (sketch == null) return;
