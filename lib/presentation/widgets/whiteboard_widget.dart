@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whiteboard/presentation/controllers/whiteboard_controller.dart';
-import 'package:flutter_whiteboard/presentation/widgets/background_whiteboard.dart';
-import 'package:flutter_whiteboard/presentation/widgets/foreground_whiteboard.dart';
+import 'package:flutter_whiteboard/presentation/widgets/whiteboard_frame.dart';
 
 /// The widget that displays the whiteboard on which users can draw. This widget
 /// takes a controller of type [WhiteboardController] that takes care of the drawing
@@ -19,14 +18,14 @@ class Whiteboard extends StatelessWidget {
   })  : _readOnly = false,
         super(key: key);
 
-  /// The named constructor that is used for previewing any existing whiteboard
-  /// data via the supplied controller of type [WhiteboardController]. No drawing
-  /// operations are supported when the widget is created using this constructor.
-  const Whiteboard.preview({
-    super.key,
-    required this.controller,
-    this.canvasKey,
-  }) : _readOnly = true;
+  // /// The named constructor that is used for previewing any existing whiteboard
+  // /// data via the supplied controller of type [WhiteboardController]. No drawing
+  // /// operations are supported when the widget is created using this constructor.
+  // const Whiteboard.preview({
+  //   super.key,
+  // })  : _readOnly = true,
+  //       canvasKey = null,
+  //       controller = null;
 
   /// The controller that controls this whiteboard.
   final WhiteboardController controller;
@@ -84,20 +83,8 @@ class _Whiteboard extends ConsumerWidget {
         minScale: 0.5,
         child: RepaintBoundary(
           key: canvasKey,
-          child: AspectRatio(
-            aspectRatio: board.ratio,
-            child: FittedBox(
-              child: SizedBox(
-                width: board.width,
-                height: board.height,
-                child: Stack(
-                  children: [
-                    BackgroundWhiteboard(size: board.size),
-                    if (!readOnly) ForegroundArtboard(size: board.size)
-                  ],
-                ),
-              ),
-            ),
+          child: WhiteboardFrame(
+            board: board,
           ),
         ),
       ),
