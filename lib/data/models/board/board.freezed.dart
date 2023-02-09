@@ -20,7 +20,7 @@ Board _$BoardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Board {
-  dynamic get size => throw _privateConstructorUsedError;
+  PageSize get pageSize => throw _privateConstructorUsedError;
   List<Sketch> get sketches => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +33,9 @@ abstract class $BoardCopyWith<$Res> {
   factory $BoardCopyWith(Board value, $Res Function(Board) then) =
       _$BoardCopyWithImpl<$Res, Board>;
   @useResult
-  $Res call({dynamic size, List<Sketch> sketches});
+  $Res call({PageSize pageSize, List<Sketch> sketches});
+
+  $PageSizeCopyWith<$Res> get pageSize;
 }
 
 /// @nodoc
@@ -49,19 +51,27 @@ class _$BoardCopyWithImpl<$Res, $Val extends Board>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? size = freezed,
+    Object? pageSize = null,
     Object? sketches = null,
   }) {
     return _then(_value.copyWith(
-      size: freezed == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as PageSize,
       sketches: null == sketches
           ? _value.sketches
           : sketches // ignore: cast_nullable_to_non_nullable
               as List<Sketch>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PageSizeCopyWith<$Res> get pageSize {
+    return $PageSizeCopyWith<$Res>(_value.pageSize, (value) {
+      return _then(_value.copyWith(pageSize: value) as $Val);
+    });
   }
 }
 
@@ -71,7 +81,10 @@ abstract class _$$_BoardCopyWith<$Res> implements $BoardCopyWith<$Res> {
       __$$_BoardCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic size, List<Sketch> sketches});
+  $Res call({PageSize pageSize, List<Sketch> sketches});
+
+  @override
+  $PageSizeCopyWith<$Res> get pageSize;
 }
 
 /// @nodoc
@@ -83,11 +96,14 @@ class __$$_BoardCopyWithImpl<$Res> extends _$BoardCopyWithImpl<$Res, _$_Board>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? size = freezed,
+    Object? pageSize = null,
     Object? sketches = null,
   }) {
     return _then(_$_Board(
-      size: freezed == size ? _value.size! : size,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as PageSize,
       sketches: null == sketches
           ? _value._sketches
           : sketches // ignore: cast_nullable_to_non_nullable
@@ -100,7 +116,8 @@ class __$$_BoardCopyWithImpl<$Res> extends _$BoardCopyWithImpl<$Res, _$_Board>
 @JsonSerializable()
 class _$_Board extends _Board {
   const _$_Board(
-      {this.size = const A4Page(), final List<Sketch> sketches = const []})
+      {this.pageSize = const PageSize(width: 22, height: 22),
+      final List<Sketch> sketches = const []})
       : _sketches = sketches,
         super._();
 
@@ -109,7 +126,7 @@ class _$_Board extends _Board {
 
   @override
   @JsonKey()
-  final dynamic size;
+  final PageSize pageSize;
   final List<Sketch> _sketches;
   @override
   @JsonKey()
@@ -121,7 +138,7 @@ class _$_Board extends _Board {
 
   @override
   String toString() {
-    return 'Board(size: $size, sketches: $sketches)';
+    return 'Board(pageSize: $pageSize, sketches: $sketches)';
   }
 
   @override
@@ -129,16 +146,15 @@ class _$_Board extends _Board {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Board &&
-            const DeepCollectionEquality().equals(other.size, size) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
             const DeepCollectionEquality().equals(other._sketches, _sketches));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(size),
-      const DeepCollectionEquality().hash(_sketches));
+      runtimeType, pageSize, const DeepCollectionEquality().hash(_sketches));
 
   @JsonKey(ignore: true)
   @override
@@ -155,14 +171,14 @@ class _$_Board extends _Board {
 }
 
 abstract class _Board extends Board {
-  const factory _Board({final dynamic size, final List<Sketch> sketches}) =
+  const factory _Board({final PageSize pageSize, final List<Sketch> sketches}) =
       _$_Board;
   const _Board._() : super._();
 
   factory _Board.fromJson(Map<String, dynamic> json) = _$_Board.fromJson;
 
   @override
-  dynamic get size;
+  PageSize get pageSize;
   @override
   List<Sketch> get sketches;
   @override

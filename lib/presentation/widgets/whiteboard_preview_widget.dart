@@ -5,7 +5,7 @@ import 'package:flutter_whiteboard/data/data.dart';
 import '../controllers/whiteboard_controller.dart';
 import 'whiteboard_frame.dart';
 
-class WhiteboardPreview extends StatefulWidget {
+class WhiteboardPreview extends StatelessWidget {
   const WhiteboardPreview({Key? key, this.onTap, required this.board})
       : super(key: key);
 
@@ -13,43 +13,75 @@ class WhiteboardPreview extends StatefulWidget {
   final VoidCallback? onTap;
 
   @override
-  State<WhiteboardPreview> createState() => _WhiteboardPreviewState();
-}
-
-class _WhiteboardPreviewState extends State<WhiteboardPreview> {
-  late final WhiteboardController controller;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    controller = WhiteboardController.fromDocument(board: widget.board);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    print("$runtimeType: ${board.sketches.length}");
     return ProviderScope(
       overrides: [
-        whiteboardControllerProvider.overrideWith((ref) => controller),
+        whiteboardControllerProvider.overrideWith(
+          (ref) {
+            return WhiteboardController.fromDocument(board: board);
+          },
+        ),
       ],
       child: _WhiteboardPreview(
-        onTap: widget.onTap,
+        onTap: onTap,
+        board: board,
       ),
     );
   }
+
+  // @override
+  // State<WhiteboardPreview> createState() => _WhiteboardPreviewState();
 }
+
+// class _WhiteboardPreviewState extends State<WhiteboardPreview> {
+//   late WhiteboardController controller;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     controller = WhiteboardController.fromDocument(board: widget.board);
+//   }
+//
+//   @override
+//   void didUpdateWidget(covariant WhiteboardPreview oldWidget) {
+//     super.didUpdateWidget(oldWidget);
+//     if (widget.board != oldWidget.board) {
+//       print("Widget updated");
+//       controller = WhiteboardController.fromDocument(board: widget.board);
+//       // setState(() {});
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     print("Building");
+//     print(controller.board.sketches.length);
+//     return ProviderScope(
+//       overrides: [
+//         whiteboardControllerProvider.overrideWith((ref) => controller),
+//       ],
+//       child: _WhiteboardPreview(
+//         onTap: widget.onTap,
+//       ),
+//     );
+//   }
+// }
 
 class _WhiteboardPreview extends ConsumerWidget {
   const _WhiteboardPreview({
     Key? key,
     this.onTap,
+    required this.board,
   }) : super(key: key);
 
   final VoidCallback? onTap;
+  final Board board;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final board = ref.watch(whiteboardControllerProvider).board;
+    // final board = ref.watch(whiteboardControllerProvider).board;
+    print("$runtimeType: ${board.sketches.length}");
 
     final frame = WhiteboardFrame(
       board: board,

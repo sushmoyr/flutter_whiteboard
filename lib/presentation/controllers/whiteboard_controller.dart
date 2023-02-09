@@ -3,34 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whiteboard/data/data.dart';
 import 'package:flutter_whiteboard/domain/domain.dart';
 import 'package:flutter_whiteboard/presentation/controllers/whiteboard_state.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../core/history_state_notifier_mixin.dart';
+import '../../data/models/page_size/page_size.dart';
 
 final whiteboardControllerProvider =
     StateNotifierProvider<WhiteboardController, WhiteboardState>((ref) {
   throw UnimplementedError();
 });
-
-/// A class representing the size of a page.
-abstract class PageSize {
-  /// The width of the page.
-  final double width;
-
-  /// The height of the page.
-  final double height;
-
-  /// Creates a new instance of [PageSize] with the specified [width] and [height].
-  const PageSize(this.width, this.height);
-
-  /// The aspect ratio of the page, calculated as [width] / [height].
-  double get ratio => width / height;
-}
-
-/// Class [A4Page] extends class [PageSize] and creates an instance of an A4 size
-/// paper, representing it's [width] and [height].
-class A4Page extends PageSize {
-  const A4Page() : super(2480, 3508);
-}
 
 /// A Flutter class that extends [StateNotifier<WhiteboardState>] and implements
 /// the [HistoryStateNotifierMixin<WhiteboardState>] mixin. This class is used
@@ -50,7 +31,7 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
   }) : super(
           WhiteboardState.drawing(
             board: Board(
-              size: pageSize ?? const A4Page(),
+              pageSize: pageSize ?? a4Page,
             ),
             sketchFactory: sketchFactory ?? const SketchFactory.initial(),
           ),

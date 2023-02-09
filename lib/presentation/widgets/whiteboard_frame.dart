@@ -16,6 +16,7 @@ class WhiteboardFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("$runtimeType ${board.sketches.length}");
     return AspectRatio(
       aspectRatio: board.ratio,
       child: FittedBox(

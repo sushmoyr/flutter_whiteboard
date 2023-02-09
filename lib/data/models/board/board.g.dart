@@ -7,7 +7,9 @@ part of 'board.dart';
 // **************************************************************************
 
 _$_Board _$$_BoardFromJson(Map<String, dynamic> json) => _$_Board(
-      size: json['size'] ?? const A4Page(),
+      pageSize: json['pageSize'] == null
+          ? const PageSize(width: 22, height: 22)
+          : PageSize.fromJson(json['pageSize'] as Map<String, dynamic>),
       sketches: (json['sketches'] as List<dynamic>?)
               ?.map((e) => Sketch.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -15,6 +17,6 @@ _$_Board _$$_BoardFromJson(Map<String, dynamic> json) => _$_Board(
     );
 
 Map<String, dynamic> _$$_BoardToJson(_$_Board instance) => <String, dynamic>{
-      'size': instance.size,
+      'pageSize': instance.pageSize.toJson(),
       'sketches': instance.sketches.map((e) => e.toJson()).toList(),
     };

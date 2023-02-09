@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter_whiteboard/data/models/page_size/page_size.dart';
 import 'package:flutter_whiteboard/flutter_whiteboard.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,12 +18,13 @@ part 'board.g.dart';
 class Board with _$Board {
   const Board._();
   const factory Board({
-    @Default(A4Page()) size,
+    @Default(a4Page) PageSize pageSize,
     @Default([]) List<Sketch> sketches,
   }) = _Board;
 
   factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
 
+  Size get size => Size(pageSize.width, pageSize.height);
   double get width => size.width;
   double get height => size.height;
 

@@ -52,6 +52,6 @@ class BackgroundWhiteboardPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant BackgroundWhiteboardPainter oldDelegate) {
-    return oldDelegate.state != state;
+    return true;
   }
 }
