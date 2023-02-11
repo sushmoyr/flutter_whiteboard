@@ -1,10 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter_whiteboard/data/models/page_size/page_size.dart';
 import 'package:flutter_whiteboard/flutter_whiteboard.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../sketch/sketch.dart';
 
 part 'board.freezed.dart';
 part 'board.g.dart';
@@ -27,6 +24,8 @@ class Board with _$Board {
   Size get size => Size(pageSize.width, pageSize.height);
   double get width => size.width;
   double get height => size.height;
+  bool get isNotEmpty => sketches.isNotEmpty;
+  bool get isEmpty => sketches.isEmpty;
 
   /// Gets the aspect ratio of this whiteboard.
   double get ratio => width / height;

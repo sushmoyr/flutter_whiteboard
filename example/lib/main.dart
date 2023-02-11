@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.push<Board?>(context, route).then((value) {
         // print(value?.toJson());
         if (board != value) {
-          print("Board changed");
+          // print("Board changed");
         }
         setState(() {
           board = value;

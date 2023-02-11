@@ -159,6 +159,10 @@ class WhiteboardController extends StateNotifier<WhiteboardState>
     );
   }
 
+  void changePageSize(PageSize newPaper) {
+    temporaryState = state.copyWith.board(pageSize: newPaper);
+  }
+
   void setAttribute({
     double? strokeWidth,
     StrokeCap? strokeCap,
