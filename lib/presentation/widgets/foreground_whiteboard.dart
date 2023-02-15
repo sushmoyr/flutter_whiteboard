@@ -56,7 +56,7 @@ class ForegroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // print("Foreground size: $size");
-    // canvas.clipRect(Offset.zero & size);
+    canvas.clipRect(Offset.zero & size);
     final sketch = state.activeSketch;
     if (sketch == null) return;
 
